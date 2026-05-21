@@ -430,8 +430,94 @@
     .footer-grid { grid-template-columns: 1fr; }
     .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
   }
-
-  /* ── ANIMATIONS ── */
+/* ── PENGUNDI ── */
+.pengundi-section {
+  background: var(--white); padding: 6rem 5vw;
+  border-top: 1px solid var(--blue-50); border-bottom: 1px solid var(--blue-50);
+}
+.pengundi-inner {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;
+}
+.pengundi-steps { display: flex; flex-direction: column; gap: 1.2rem; margin-bottom: 2rem; }
+.pstep {
+  display: flex; gap: 1rem; align-items: flex-start;
+  background: var(--off-white); border: 1px solid var(--blue-100);
+  border-radius: 14px; padding: 1rem 1.2rem;
+  transition: border-color 0.2s;
+}
+.pstep:hover { border-color: var(--blue-400); }
+.pstep-num {
+  width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0;
+  background: var(--blue-600); color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display); font-weight: 800; font-size: 14px;
+}
+.pstep strong { display: block; font-size: 14px; color: var(--blue-900); margin-bottom: 3px; }
+.pstep p { font-size: 13px; color: #4a6fa5; line-height: 1.5; }
+.pengundi-btn {
+  display: inline-block; background: var(--blue-600); color: #fff;
+  padding: 15px 32px; border-radius: 12px; text-decoration: none;
+  font-family: var(--font-display); font-weight: 700; font-size: 15px;
+  transition: background 0.2s, transform 0.15s; letter-spacing: 0.01em;
+}
+.pengundi-btn:hover { background: var(--blue-800); transform: translateY(-2px); }
+.pengundi-note { margin-top: 1rem; font-size: 13px; color: var(--text-light); }
+.pengundi-note a { color: var(--blue-600); text-decoration: none; font-weight: 500; }
+.pengundi-note a:hover { text-decoration: underline; }
+.pengundi-mockup {
+  border-radius: 16px; overflow: hidden;
+  box-shadow: 0 20px 60px rgba(24,95,165,0.15), 0 4px 16px rgba(0,0,0,0.06);
+  border: 1px solid var(--blue-100);
+}
+.pm-bar {
+  background: #f1f5f9; padding: 10px 16px;
+  display: flex; align-items: center; gap: 6px;
+  border-bottom: 1px solid var(--blue-100);
+}
+.pm-bar span {
+  width: 10px; height: 10px; border-radius: 50%;
+  background: var(--blue-100); display: block;
+}
+.pm-bar span:first-child { background: #fca5a5; }
+.pm-bar span:nth-child(2) { background: #fcd34d; }
+.pm-bar span:nth-child(3) { background: #6ee7b7; }
+.pm-url {
+  flex: 1; margin-left: 8px; background: #fff;
+  border: 1px solid var(--blue-100); border-radius: 6px;
+  padding: 4px 10px; font-size: 11px; color: var(--text-light);
+  font-family: monospace;
+}
+.pm-body { background: #fff; padding: 2rem; }
+.pm-logo-row {
+  display: flex; align-items: center; gap: 10px; margin-bottom: 1.2rem;
+}
+.pm-logo-badge {
+  width: 32px; height: 32px; border-radius: 7px;
+  background: var(--blue-600); color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display); font-weight: 800; font-size: 11px;
+}
+.pm-logo-row span { font-size: 13px; font-weight: 600; color: var(--blue-800); }
+.pm-title {
+  font-family: var(--font-display); font-weight: 700; font-size: 1.1rem;
+  color: var(--blue-900); margin-bottom: 1.2rem;
+}
+.pm-field { margin-bottom: 0.8rem; }
+.pm-label { font-size: 11px; font-weight: 600; color: var(--blue-800); margin-bottom: 4px; }
+.pm-input {
+  height: 32px; background: var(--off-white);
+  border: 1px solid var(--blue-100); border-radius: 7px;
+}
+.pm-submit {
+  background: var(--blue-600); color: #fff; text-align: center;
+  padding: 10px; border-radius: 8px; margin-top: 1rem;
+  font-family: var(--font-display); font-weight: 700; font-size: 13px;
+}
+.pm-login-link { text-align: center; font-size: 11px; color: var(--text-light); margin-top: 8px; }
+@media (max-width: 900px) {
+  .pengundi-inner { grid-template-columns: 1fr; }
+  .pengundi-right { display: none; }
+}  /* ── ANIMATIONS ── */
   .fade-up {
     opacity: 0; transform: translateY(28px);
     transition: opacity 0.6s ease, transform 0.6s ease;
@@ -456,7 +542,8 @@
   <ul class="nav-links">
     <li><a href="#tentang">Tentang</a></li>
     <li><a href="#agenda">Manifesto</a></li>
-    <li><a href="#acara">Aktiviti</a></li>
+   <li><a href="#daftar-pengundi">Daftar Pengundi</a></li>
+   <li><a href="#acara">Aktiviti</a></li>
     <li><a href="#kepimpinan">Kepimpinan</a></li>
     <li><a href="#sertai" class="nav-cta">Sertai Kami</a></li>
   </ul>
@@ -596,8 +683,76 @@
     </div>
   </div>
 </section>
+<!-- DAFTAR PENGUNDI -->
+<section class="pengundi-section" id="daftar-pengundi">
+  <div class="pengundi-inner">
+    <div class="pengundi-left">
+      <span class="section-label">Portal Rasmi PBMy</span>
+      <h2 class="section-title">Daftar Sebagai<br /><em style="font-style:normal;color:var(--blue-400);">Pengundi PBMy</em></h2>
+      <p style="font-size:15px;color:#4a6fa5;line-height:1.75;margin-bottom:2rem;">Sebelum menyertai GENERASI secara rasmi, anda perlu mendaftar sebagai <strong>pengundi</strong> di portal e-Parlimen Belia Malaysia. Ini adalah langkah pertama yang wajib dilakukan.</p>
 
-<!-- EVENTS -->
+      <div class="pengundi-steps">
+        <div class="pstep">
+          <div class="pstep-num">1</div>
+          <div>
+            <strong>Klik butang "Daftar Sekarang" di bawah</strong>
+            <p>Anda akan dibawa ke portal rasmi Parlimen Belia Malaysia.</p>
+          </div>
+        </div>
+        <div class="pstep">
+          <div class="pstep-num">2</div>
+          <div>
+            <strong>Isi maklumat pendaftaran</strong>
+            <p>Sediakan No. Kad Pengenalan, Nama Penuh (seperti MyKad), dan Email aktif anda.</p>
+          </div>
+        </div>
+        <div class="pstep">
+          <div class="pstep-num">3</div>
+          <div>
+            <strong>Cipta kata laluan</strong>
+            <p>Tetapkan kata laluan yang selamat dan sahkan semula sebelum menghantar.</p>
+          </div>
+        </div>
+        <div class="pstep">
+          <div class="pstep-num">4</div>
+          <div>
+            <strong>Kembali & daftar dengan GENERASI</strong>
+            <p>Setelah akaun PBMy berjaya dicipta, daftar ahli GENERASI di bahagian <a href="#sertai" style="color:var(--blue-600);font-weight:600;">Sertai Kami</a> di bawah.</p>
+          </div>
+        </div>
+      </div>
+
+      <a href="https://epbmy.aimaerial.com/register" target="_blank" rel="noopener" class="pengundi-btn">
+        Daftar Pengundi di Portal PBMy →
+      </a>
+      <p class="pengundi-note">Sudah ada akaun? <a href="https://epbmy.aimaerial.com/login" target="_blank" rel="noopener">Log masuk di sini</a></p>
+    </div>
+
+    <div class="pengundi-right">
+      <div class="pengundi-mockup">
+        <div class="pm-bar">
+          <span></span><span></span><span></span>
+          <div class="pm-url">epbmy.aimaerial.com/register</div>
+        </div>
+        <div class="pm-body">
+          <div class="pm-logo-row">
+            <div class="pm-logo-badge">PBMY</div>
+            <span>Parlimen Belia Malaysia</span>
+          </div>
+          <div class="pm-title">Daftar Pengguna</div>
+          <div class="pm-field"><div class="pm-label">No. Kad Pengenalan</div><div class="pm-input"></div></div>
+          <div class="pm-field"><div class="pm-label">Nama Penuh (Seperti di dalam MyKad)</div><div class="pm-input"></div></div>
+          <div class="pm-field"><div class="pm-label">Kata Laluan</div><div class="pm-input"></div></div>
+          <div class="pm-field"><div class="pm-label">Pengesahan Kata Laluan</div><div class="pm-input"></div></div>
+          <div class="pm-field"><div class="pm-label">Email Aktif</div><div class="pm-input"></div></div>
+          <div class="pm-submit">Cipta Akaun</div>
+          <div class="pm-login-link">Sudah mempunyai akaun? Log Masuk</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+ <!-- EVENTS -->
 <section class="events" id="acara">
   <div class="section-head">
     <span class="section-label">Acara & Aktiviti</span>
