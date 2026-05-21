@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Parti Generasi Rakyat Pulau Pinang | Parlimen Belia Malaysia</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --blue-50: #E6F1FB;
+    --blue-100: #B5D4F4;
+    --blue-200: #85B7EB;
+    --blue-400: #378ADD;
+    --blue-600: #185FA5;
+    --blue-800: #0C447C;
+    --blue-900: #042C53;
+    --white: #ffffff;
+    --off-white: #F7FAFE;
+    --text-dark: #06192e;
+    --text-mid: #2c5282;
+    --text-light: #6b9acf;
+    --font-display: 'Syne', sans-serif;
+    --font-body: 'DM Sans', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--white);
+    color: var(--text-dark);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.1rem 5vw;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--blue-50);
+    transition: box-shadow 0.3s;
+  }
+  nav.scrolled { box-shadow: 0 4px 24px rgba(24,95,165,0.10); }
+  .nav-logo {
+    display: flex; align-items: center; gap: 12px; text-decoration: none;
+  }
+  .nav-logo-badge {
+    width: 42px; height: 42px; border-radius: 10px;
+    background: var(--blue-600);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-display); font-weight: 800; font-size: 15px; color: #fff;
+    letter-spacing: -0.5px;
+  }
+  .nav-logo-text { line-height: 1.2; }
+  .nav-logo-text span:first-child {
+    display: block; font-family: var(--font-display); font-weight: 700; font-size: 13px;
+    color: var(--blue-800); letter-spacing: 0.02em;
+  }
+  .nav-logo-text span:last-child {
+    display: block; font-size: 11px; color: var(--text-light); font-weight: 300;
+  }
+  .nav-links {
+    display: flex; align-items: center; gap: 2rem; list-style: none;
+  }
+  .nav-links a {
+    font-size: 13.5px; font-weight: 500; color: var(--blue-800);
+    text-decoration: none; letter-spacing: 0.01em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--blue-400); }
+  .nav-cta {
+    background: var(--blue-600); color: #fff !important;
+    padding: 9px 20px; border-radius: 8px;
+    font-weight: 600 !important; font-size: 13px !important;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--blue-800) !important; }
+  .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+  .nav-hamburger span { display: block; width: 24px; height: 2px; background: var(--blue-800); border-radius: 2px; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(155deg, var(--blue-900) 0%, var(--blue-800) 40%, var(--blue-600) 80%, var(--blue-400) 100%);
+    display: flex; flex-direction: column; justify-content: center; align-items: flex-start;
+    padding: 9rem 5vw 6rem;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; top: -120px; right: -80px;
+    width: 600px; height: 600px; border-radius: 50%;
+    background: rgba(255,255,255,0.04);
+    pointer-events: none;
+  }
+  .hero::after {
+    content: '';
+    position: absolute; bottom: -100px; right: 10vw;
+    width: 400px; height: 400px; border-radius: 50%;
+    background: rgba(55,138,221,0.18);
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 100px; padding: 6px 16px;
+    font-size: 12px; font-weight: 500; color: var(--blue-100);
+    letter-spacing: 0.08em; text-transform: uppercase;
+    margin-bottom: 2rem;
+  }
+  .hero-eyebrow span { width: 6px; height: 6px; border-radius: 50%; background: #7dc4f5; display: block; }
+  .hero h1 {
+    font-family: var(--font-display);
+    font-weight: 800; font-size: clamp(2.8rem, 6vw, 5rem);
+    line-height: 1.08; color: #fff;
+    max-width: 780px; margin-bottom: 1.5rem;
+    letter-spacing: -0.03em;
+  }
+  .hero h1 em { font-style: normal; color: var(--blue-200); }
+  .hero p {
+    font-size: clamp(1rem, 1.5vw, 1.2rem); font-weight: 300;
+    color: rgba(255,255,255,0.78); line-height: 1.7;
+    max-width: 520px; margin-bottom: 2.5rem;
+  }
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    background: #fff; color: var(--blue-800);
+    padding: 14px 32px; border-radius: 10px;
+    font-family: var(--font-display); font-weight: 700; font-size: 15px;
+    text-decoration: none; transition: background 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--blue-50); transform: translateY(-2px); }
+  .btn-outline {
+    background: rgba(255,255,255,0.1); color: #fff;
+    border: 1.5px solid rgba(255,255,255,0.35);
+    padding: 14px 32px; border-radius: 10px;
+    font-family: var(--font-display); font-weight: 600; font-size: 15px;
+    text-decoration: none; transition: background 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+  .btn-outline:hover { background: rgba(255,255,255,0.18); transform: translateY(-2px); }
+  .hero-stats {
+    position: absolute; bottom: 3rem; right: 5vw;
+    display: flex; gap: 2.5rem;
+  }
+  .hero-stat { text-align: right; }
+  .hero-stat strong {
+    display: block; font-family: var(--font-display);
+    font-size: 2rem; font-weight: 800; color: #fff;
+  }
+  .hero-stat span { font-size: 12px; color: rgba(255,255,255,0.6); font-weight: 300; }
+  .hero-scroll-line {
+    position: absolute; bottom: 0; left: 5vw;
+    width: 1px; height: 80px; background: linear-gradient(to bottom, rgba(255,255,255,0.4), transparent);
+  }
+
+  /* ── TICKER ── */
+  .ticker-wrap {
+    background: var(--blue-600); padding: 0.8rem 0; overflow: hidden;
+    border-top: 1px solid var(--blue-800); border-bottom: 1px solid var(--blue-800);
+  }
+  .ticker-track {
+    display: flex; gap: 0; white-space: nowrap;
+    animation: ticker 28s linear infinite;
+  }
+  .ticker-item {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-size: 12px; font-weight: 500; color: rgba(255,255,255,0.85);
+    letter-spacing: 0.06em; text-transform: uppercase;
+    padding: 0 2.5rem;
+  }
+  .ticker-item::after { content: '◆'; font-size: 6px; color: var(--blue-200); margin-left: 2.5rem; }
+  @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+  /* ── SECTION SHARED ── */
+  section { padding: 6rem 5vw; }
+  .section-label {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--blue-400);
+    margin-bottom: 1rem; display: block;
+  }
+  .section-title {
+    font-family: var(--font-display); font-weight: 800;
+    font-size: clamp(2rem, 4vw, 3rem); line-height: 1.12;
+    color: var(--blue-900); margin-bottom: 1.2rem;
+    letter-spacing: -0.025em;
+  }
+  .section-sub {
+    font-size: 1.05rem; font-weight: 300; color: #4a6fa5;
+    line-height: 1.7; max-width: 560px;
+  }
+  .section-head { margin-bottom: 3.5rem; }
+  .text-center { text-align: center; }
+  .text-center .section-sub { margin: 0 auto; }
+
+  /* ── ABOUT ── */
+  .about { background: var(--off-white); }
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;
+  }
+  .about-visual {
+    position: relative; height: 440px;
+  }
+  .about-card-main {
+    position: absolute; top: 0; left: 0;
+    width: 70%; height: 85%;
+    background: var(--blue-600); border-radius: 20px;
+    display: flex; flex-direction: column; justify-content: flex-end; padding: 2rem;
+    overflow: hidden;
+  }
+  .about-card-main::before {
+    content: 'PGRPP'; position: absolute; top: -20px; right: -20px;
+    font-family: var(--font-display); font-size: 9rem; font-weight: 800;
+    color: rgba(255,255,255,0.06); line-height: 1;
+    pointer-events: none; user-select: none;
+  }
+  .about-card-main h3 {
+    font-family: var(--font-display); font-size: 1.4rem; font-weight: 700; color: #fff;
+    margin-bottom: 0.5rem;
+  }
+  .about-card-main p { font-size: 13px; color: rgba(255,255,255,0.7); line-height: 1.6; }
+  .about-card-float {
+    position: absolute; bottom: 0; right: 0;
+    width: 55%; background: var(--white);
+    border: 1px solid var(--blue-100); border-radius: 16px;
+    padding: 1.4rem; box-shadow: 0 8px 32px rgba(24,95,165,0.10);
+  }
+  .about-card-float-num {
+    font-family: var(--font-display); font-size: 2.4rem; font-weight: 800;
+    color: var(--blue-600); line-height: 1;
+  }
+  .about-card-float p { font-size: 13px; color: var(--text-light); margin-top: 4px; }
+  .about-text { display: flex; flex-direction: column; gap: 1.5rem; }
+  .about-pill {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--blue-50); border: 1px solid var(--blue-100);
+    border-radius: 8px; padding: 10px 16px;
+    font-size: 14px; color: var(--blue-800); font-weight: 500;
+  }
+  .about-pill svg { flex-shrink: 0; }
+  .about-pills { display: flex; flex-direction: column; gap: 10px; }
+
+  /* ── AGENDA ── */
+  .agenda-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+  }
+  .agenda-card {
+    background: var(--off-white); border: 1px solid var(--blue-100);
+    border-radius: 18px; padding: 2rem;
+    transition: border-color 0.2s, transform 0.2s;
+    position: relative; overflow: hidden;
+  }
+  .agenda-card:hover { border-color: var(--blue-400); transform: translateY(-4px); }
+  .agenda-card::before {
+    content: attr(data-num);
+    position: absolute; top: -8px; right: 16px;
+    font-family: var(--font-display); font-size: 5rem; font-weight: 800;
+    color: var(--blue-50); line-height: 1; pointer-events: none;
+  }
+  .agenda-icon {
+    width: 48px; height: 48px; border-radius: 12px;
+    background: var(--blue-600); display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1.2rem;
+  }
+  .agenda-icon svg { width: 22px; height: 22px; stroke: #fff; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .agenda-card h3 {
+    font-family: var(--font-display); font-weight: 700; font-size: 1.1rem;
+    color: var(--blue-900); margin-bottom: 0.6rem;
+  }
+  .agenda-card p { font-size: 14px; color: #4a6fa5; line-height: 1.65; }
+
+  /* ── EVENTS ── */
+  .events { background: var(--blue-900); }
+  .events .section-title { color: #fff; }
+  .events .section-sub { color: rgba(255,255,255,0.6); }
+  .events .section-label { color: var(--blue-200); }
+  .events-list { display: flex; flex-direction: column; gap: 1rem; }
+  .event-item {
+    display: grid; grid-template-columns: 80px 1fr auto;
+    align-items: center; gap: 1.5rem;
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 14px; padding: 1.4rem 1.8rem;
+    transition: background 0.2s;
+    text-decoration: none; color: inherit;
+  }
+  .event-item:hover { background: rgba(55,138,221,0.12); border-color: rgba(55,138,221,0.3); }
+  .event-date {
+    text-align: center; font-family: var(--font-display);
+    border-right: 1px solid rgba(255,255,255,0.1); padding-right: 1.5rem;
+  }
+  .event-date strong { display: block; font-size: 2rem; font-weight: 800; color: var(--blue-200); line-height: 1; }
+  .event-date span { font-size: 11px; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.08em; }
+  .event-info h4 { font-family: var(--font-display); font-weight: 700; font-size: 1rem; color: #fff; margin-bottom: 4px; }
+  .event-info p { font-size: 13px; color: rgba(255,255,255,0.5); }
+  .event-tag {
+    background: rgba(55,138,221,0.2); color: var(--blue-200);
+    border: 1px solid rgba(55,138,221,0.3);
+    border-radius: 100px; padding: 5px 14px;
+    font-size: 11px; font-weight: 600; letter-spacing: 0.05em;
+    text-transform: uppercase; white-space: nowrap;
+  }
+
+  /* ── LEADERSHIP ── */
+  .leaders-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem;
+  }
+  .leader-card {
+    background: var(--off-white); border: 1px solid var(--blue-100);
+    border-radius: 18px; overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .leader-card:hover { transform: translateY(-5px); box-shadow: 0 12px 40px rgba(24,95,165,0.12); }
+  .leader-avatar {
+    height: 160px; background: linear-gradient(135deg, var(--blue-600), var(--blue-400));
+    display: flex; align-items: flex-end; justify-content: center; padding-bottom: 0;
+    position: relative; overflow: hidden;
+  }
+  .leader-avatar::after {
+    content: attr(data-initials);
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -58%);
+    font-family: var(--font-display); font-size: 3.5rem; font-weight: 800;
+    color: rgba(255,255,255,0.25);
+  }
+  .leader-avatar-inner {
+    width: 72px; height: 72px; border-radius: 50%;
+    background: rgba(255,255,255,0.15); border: 3px solid rgba(255,255,255,0.3);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-display); font-size: 1.4rem; font-weight: 800; color: #fff;
+    position: relative; z-index: 1; margin-bottom: 0; transform: translateY(50%);
+  }
+  .leader-info { padding: 2.2rem 1.2rem 1.4rem; }
+  .leader-info h4 { font-family: var(--font-display); font-weight: 700; font-size: 0.95rem; color: var(--blue-900); margin-bottom: 3px; }
+  .leader-info span { font-size: 12px; color: var(--text-light); display: block; }
+
+  /* ── JOIN ── */
+  .join {
+    background: linear-gradient(135deg, var(--blue-50) 0%, var(--blue-100) 100%);
+    text-align: center; padding: 7rem 5vw;
+  }
+  .join .section-title { color: var(--blue-900); max-width: 600px; margin: 0 auto 1rem; }
+  .join .section-sub { margin: 0 auto 2.5rem; }
+  .join-card {
+    background: #fff; border: 1px solid var(--blue-200);
+    border-radius: 20px; padding: 2rem 2.5rem;
+    max-width: 620px; margin: 0 auto;
+    box-shadow: 0 8px 40px rgba(24,95,165,0.10);
+  }
+  .join-field-row {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;
+  }
+  .join-field { display: flex; flex-direction: column; gap: 6px; }
+  .join-field label {
+    font-size: 12px; font-weight: 600; color: var(--blue-800);
+    letter-spacing: 0.04em; text-transform: uppercase;
+  }
+  .join-field input, .join-field select {
+    border: 1px solid var(--blue-100); border-radius: 10px;
+    padding: 11px 14px; font-family: var(--font-body); font-size: 14px;
+    color: var(--text-dark); background: var(--off-white);
+    outline: none; transition: border-color 0.2s;
+    appearance: none;
+  }
+  .join-field input:focus, .join-field select:focus { border-color: var(--blue-400); background: #fff; }
+  .join-field input::placeholder { color: var(--text-light); }
+  .join-card button {
+    width: 100%; background: var(--blue-600); color: #fff; border: none; cursor: pointer;
+    padding: 14px 24px; border-radius: 10px; margin-top: 0.5rem;
+    font-family: var(--font-display); font-weight: 700; font-size: 15px;
+    transition: background 0.2s, opacity 0.2s; letter-spacing: 0.01em;
+  }
+  .join-card button:hover { background: var(--blue-800); }
+  .join-card button:disabled { opacity: 0.6; cursor: not-allowed; }
+  .join-note { font-size: 12px; color: var(--text-light); margin-top: 1rem; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--blue-900); padding: 4rem 5vw 2.5rem;
+  }
+  .footer-grid {
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 3rem; padding-bottom: 3rem;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    margin-bottom: 2rem;
+  }
+  .footer-brand p { font-size: 13px; color: rgba(255,255,255,0.45); line-height: 1.7; margin-top: 1rem; max-width: 240px; }
+  .footer-col h5 {
+    font-family: var(--font-display); font-weight: 700; font-size: 12px;
+    color: var(--blue-200); text-transform: uppercase; letter-spacing: 0.1em;
+    margin-bottom: 1rem;
+  }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .footer-col ul li a {
+    font-size: 13px; color: rgba(255,255,255,0.5); text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-col ul li a:hover { color: #fff; }
+  .footer-bottom {
+    display: flex; align-items: center; justify-content: space-between;
+    font-size: 12px; color: rgba(255,255,255,0.3);
+  }
+  .footer-bottom a { color: rgba(255,255,255,0.5); text-decoration: none; }
+  .footer-pbm-badge {
+    background: rgba(55,138,221,0.15); border: 1px solid rgba(55,138,221,0.25);
+    border-radius: 8px; padding: 6px 14px; font-size: 11px;
+    color: var(--blue-200); font-weight: 600; letter-spacing: 0.05em;
+  }
+
+  /* ── MOBILE ── */
+  @media (max-width: 900px) {
+    .about-grid, .leaders-grid { grid-template-columns: 1fr; }
+    .agenda-grid { grid-template-columns: 1fr 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .about-visual { height: 300px; }
+    .hero-stats { position: static; margin-top: 3rem; flex-wrap: wrap; }
+    .hero-scroll-line { display: none; }
+  }
+  @media (max-width: 600px) {
+    .nav-links { display: none; }
+    .nav-hamburger { display: flex; }
+    .agenda-grid { grid-template-columns: 1fr; }
+    .event-item { grid-template-columns: 60px 1fr; }
+    .event-tag { display: none; }
+    .join-form { flex-direction: column; }
+    .join-field-row { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr; }
+    .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+  }
+
+  /* ── ANIMATIONS ── */
+  .fade-up {
+    opacity: 0; transform: translateY(28px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+  .fade-up:nth-child(2) { transition-delay: 0.1s; }
+  .fade-up:nth-child(3) { transition-delay: 0.2s; }
+  .fade-up:nth-child(4) { transition-delay: 0.3s; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a class="nav-logo" href="#">
+    <div class="nav-logo-badge">PBMy</div>
+    <div class="nav-logo-text">
+      <span>Parti Generasi Rakyat</span>
+      <span>Negeri Pulau Pinang · Parlimen Belia Malaysia</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#tentang">Tentang</a></li>
+    <li><a href="#agenda">Manifesto</a></li>
+    <li><a href="#acara">Aktiviti</a></li>
+    <li><a href="#kepimpinan">Kepimpinan</a></li>
+    <li><a href="#sertai" class="nav-cta">Sertai Kami</a></li>
+  </ul>
+  <div class="nav-hamburger" onclick="toggleMenu(this)">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-eyebrow">
+    <span></span>Parlimen Belia Malaysia — Pulau Pinang
+  </div>
+  <h1>GENERASI<br /><em>Masa Depan Negara</em></h1>
+  <p>Parti Generasi Rakyat Negeri Pulau Pinang memperjuangkan hak, aspirasi, dan kepentingan belia negeri Pulau Pinang di Parlimen Belia Malaysia.</p>
+  <div class="hero-btns">
+    <a href="#sertai" class="btn-primary">Sertai Parti</a>
+    <a href="#agenda" class="btn-outline">Lihat Manifesto</a>
+  </div>
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <strong>1,200+</strong>
+      <span>Ahli Berdaftar</span>
+    </div>
+    <div class="hero-stat">
+      <strong>13</strong>
+      <span>Kawasan Parlimen</span>
+    </div>
+    <div class="hero-stat">
+      <strong>2026</strong>
+      <span>Ditubuhkan</span>
+    </div>
+  </div>
+  <div class="hero-scroll-line"></div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker-track">
+    <span class="ticker-item">Belia Pemimpin Masa Depan</span>
+    <span class="ticker-item">GENERASI Pulau Pinang</span>
+    <span class="ticker-item">Parlimen Belia Malaysia</span>
+    <span class="ticker-item">Generasi Masa Depan Negara</span>
+    <span class="ticker-item">Progresif · Inklusif · Sejahtera</span>
+    <span class="ticker-item">Belia Pemimpin Masa Depan</span>
+    <span class="ticker-item">GENERASI Pulau Pinang</span>
+    <span class="ticker-item">Parlimen Belia Malaysia</span>
+    <span class="ticker-item">Generasi Masa Depan Negara</span>
+    <span class="ticker-item">Progresif · Inklusif · Sejahtera</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about" id="tentang">
+  <div class="about-grid">
+    <div class="about-visual">
+      <div class="about-card-main">
+        <h3>GENERASI Pulau Pinang di Parlimen Belia</h3>
+        <p>Mewakili belia Pulau Pinang dengan penuh semangat dan dedikasi di peringkat nasional.</p>
+      </div>
+      <div class="about-card-float">
+        <div class="about-card-float-num">GENERASI</div>
+        <p>Parlimen Belia Malaysia — Pulau Pinang</p>
+      </div>
+    </div>
+    <div class="about-text">
+      <span class="section-label">Tentang Kami</span>
+      <h2 class="section-title">Gerakan Belia<br />Yang Bermakna</h2>
+      <p style="font-size: 15px; color: #4a6fa5; line-height: 1.7;">Parti Generasi Rakyat (GENERASI) adalah parti belia yang ditubuhkan dalam kerangka Parlimen Belia Malaysia bagi mewakili kepentingan belia di Malaysia. Kami percaya bahawa generasi muda adalah tunjang kepada pembangunan negara.</p>
+      <div class="about-pills">
+        <div class="about-pill">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="stroke:var(--blue-600)"><polyline points="20 6 9 17 4 12"/></svg>
+          Inklusif kepada semua belia Pulau Pinang
+        </div>
+        <div class="about-pill">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="stroke:var(--blue-600)"><polyline points="20 6 9 17 4 12"/></svg>
+          Progresif dalam perjuangan hak belia
+        </div>
+        <div class="about-pill">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="stroke:var(--blue-600)"><polyline points="20 6 9 17 4 12"/></svg>
+          Sejahtera dalam menjaga keharmonian
+        </div>
+        <div class="about-pill">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="stroke:var(--blue-600)"><polyline points="20 6 9 17 4 12"/></svg>
+          Berintegriti dalam kepimpinan belia
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AGENDA -->
+<section id="agenda">
+  <div class="section-head text-center">
+    <span class="section-label">Agenda Parti</span>
+    <h2 class="section-title">Apa Yang Kami<br />Perjuangkan</h2>
+    <p class="section-sub">Enam fokus utama GENERASI dalam Parlimen Belia Malaysia untuk membangunkan generasi muda Malaysia.</p>
+  </div>
+  <div class="agenda-grid">
+    <div class="agenda-card fade-up" data-num="01">
+      <div class="agenda-icon">
+        <svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+      </div>
+      <h3>Pendidikan & Kemahiran</h3>
+      <p>Memperjuangkan akses pendidikan berkualiti, biasiswa, dan latihan kemahiran vokasional untuk belia Pulau Pinang.</p>
+    </div>
+    <div class="agenda-card fade-up" data-num="02">
+      <div class="agenda-icon">
+        <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+      </div>
+      <h3>Teknologi & Inovasi</h3>
+      <p>Mendorong ekosistem startup, literasi digital, dan peluang kerjaya teknologi untuk belia tempatan.</p>
+    </div>
+    <div class="agenda-card fade-up" data-num="03">
+      <div class="agenda-icon">
+        <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      </div>
+      <h3>Perumahan Mampu Milik</h3>
+      <p>Mendesak polisi perumahan yang adil bagi belia yang baru bekerja dan berkahwin di Pulau Pinang.</p>
+    </div>
+    <div class="agenda-card fade-up" data-num="04">
+      <div class="agenda-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <h3>Kesihatan Mental Belia</h3>
+      <p>Advokasi khidmat sokongan kesihatan mental yang mudah diakses dan bebas stigma untuk semua belia.</p>
+    </div>
+    <div class="agenda-card fade-up" data-num="05">
+      <div class="agenda-icon">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+      </div>
+      <h3>Alam Sekitar & Hijau</h3>
+      <p>Menyuarakan dasar alam sekitar yang mampan demi Pulau Pinang yang hijau untuk generasi akan datang.</p>
+    </div>
+    <div class="agenda-card fade-up" data-num="06">
+      <div class="agenda-icon">
+        <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      </div>
+      <h3>Peluang Pekerjaan</h3>
+      <p>Menggalakkan pelaburan, program perantisan, dan lonjakan pekerjaan berkualiti untuk belia Pulau Pinang.</p>
+    </div>
+  </div>
+</section>
+
+<!-- EVENTS -->
+<section class="events" id="acara">
+  <div class="section-head">
+    <span class="section-label">Acara & Aktiviti</span>
+    <h2 class="section-title">Jadual Aktiviti<br />GENERASI Pulau Pinang 2026</h2>
+    <p class="section-sub">Sertai kami dalam pelbagai program dan sesi parlimen yang akan datang.</p>
+  </div>
+  <div class="events-list">
+    <a class="event-item" href="#">
+      <div class="event-date"><strong>15</strong><span>Oktober</span></div>
+      <div class="event-info">
+        <h4>Persidangan Parlimen Belia Malaysia 2026</h4>
+        <p>Parlimen Malaysia, Kuala Lumpur</p>
+      </div>
+      <span class="event-tag">Parlimen</span>
+    </a>
+    <a class="event-item" href="#">
+      <div class="event-date"><strong>22</strong><span>Jun</span></div>
+      <div class="event-info">
+        <h4>Forum Belia: Masa Depan Ekonomi Pulau Pinang</h4>
+        <p>Kompleks Bukit Dumbar, Pulau Pinang</p>
+      </div>
+      <span class="event-tag">Forum</span>
+    </a>
+    <a class="event-item" href="#">
+      <div class="event-date"><strong>07</strong><span>Jul</span></div>
+      <div class="event-info">
+        <h4>Bengkel Kepimpinan Belia GENERASI Pulau Pinang</h4>
+        <p>Universiti Sains Malaysia, Pulau Pinang</p>
+      </div>
+      <span class="event-tag">Bengkel</span>
+    </a>
+    <a class="event-item" href="#">
+      <div class="event-date"><strong>19</strong><span>Jul</span></div>
+      <div class="event-info">
+        <h4>Program Khidmat Masyarakat: Bersih Pantai</h4>
+        <p>Pantai Batu Feringgi, Pulau Pinang</p>
+      </div>
+      <span class="event-tag">Komuniti</span>
+    </a>
+    <a class="event-item" href="#">
+      <div class="event-date"><strong>03</strong><span>Ogs</span></div>
+      <div class="event-info">
+        <h4>Dialog Terbuka Bersama Pemimpin Negeri</h4>
+        <p>Dewan Sri Pinang, Georgetown</p>
+      </div>
+      <span class="event-tag">Dialog</span>
+    </a>
+  </div>
+</section>
+
+<!-- LEADERSHIP -->
+<section id="kepimpinan">
+  <div class="section-head text-center">
+    <span class="section-label">Kepimpinan</span>
+    <h2 class="section-title">Barisan Pimpinan<br />GENERASI Pulau Pinang</h2>
+    <p class="section-sub">Dipimpin oleh belia yang bersemangat, berintegriti, dan berdedikasi kepada rakyat Pulau Pinang.</p>
+  </div>
+  <div class="leaders-grid">
+    <div class="leader-card fade-up">
+      <div class="leader-avatar" data-initials="HH"><div class="leader-avatar-inner">AH</div></div>
+      <div class="leader-info">
+        <h4>Muhammad Haikal Bin Mohammad Hatta</h4>
+        <span>Presiden GENERASI</span>
+      </div>
+    </div>
+    <div class="leader-card fade-up">
+      <div class="leader-avatar" data-initials="MFN"><div class="leader-avatar-inner">SY</div></div>
+      <div class="leader-info">
+        <h4>Muhammad Faizul Nazrul Bin Hamzah</h4>
+        <span>Pengerusi GENERASI Pulau Pinang</span>
+      </div>
+    </div>
+    <div class="leader-card fade-up">
+      <div class="leader-avatar" data-initials="NAF"><div class="leader-avatar-inner">KV</div></div>
+      <div class="leader-info">
+        <h4>Nurul Ainul Fatiha Binti Saiful Azwan</h4>
+        <span>Timbalan Pengerusi 1 GENERASI Pulau Pinang</span>
+      </div>
+    </div>
+    <div class="leader-card fade-up">
+      <div class="leader-avatar" data-initials="CXP"><div class="leader-avatar-inner">LX</div></div>
+      <div class="leader-info">
+        <h4>Choo Xuan Ping</h4>
+        <span>Timbalan Pengerusi 2 GENERASI Pulau Pinang </span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- JOIN -->
+<section class="join" id="sertai">
+  <span class="section-label">Sertai Kami</span>
+  <h2 class="section-title">Jadilah Sebahagian<br />Dari Perubahan</h2>
+  <p class="section-sub">Daftar sekarang dan suarakan pendapat anda bersama ribuan belia Pulau Pinang yang prihatin.</p>
+  <div class="join-card">
+    <div class="join-field-row">
+      <div class="join-field">
+        <label>Nama Penuh</label>
+        <input id="reg-name" type="text" placeholder="Nama penuh anda..." />
+      </div>
+      <div class="join-field">
+        <label>E-mel</label>
+        <input id="reg-email" type="email" placeholder="E-mel anda..." />
+      </div>
+    </div>
+    <div class="join-field-row">
+      <div class="join-field">
+        <label>No. Telefon</label>
+        <input id="reg-phone" type="tel" placeholder="cth: 0123456789" />
+      </div>
+      <div class="join-field">
+        <label>Parlimen</label>
+        <select id="reg-area">
+          <option value="">-- Pilih kawasan --</option>
+          <option></option>
+          <option>Kepala Batas</option>
+          <option>Balik Pulau</option>
+          <option>Bayan Baru</option>
+          <option>Bukit Mertajam</option>
+          <option>Bukit Bendera</option>
+          <option>Bukit Gelugor</option>
+          <option>Tanjong</option>
+          <option>Batu Kawan</option>
+          <option>Tasek Gelugor</option>
+          <option>Permatang Pauh</option>
+          <option>Nibong Tebal</option>
+          <option>Bagan</option>
+          <option>Jelutong</option>
+        </select>
+      </div>
+    </div>
+    <button id="reg-btn" onclick="submitToSheets()">Daftar Sekarang →</button>
+    <p class="join-note" id="join-note">Dengan mendaftar, anda bersetuju untuk menerima berita dan kemas kini dari GENERASI Pulau Pinang. Maklumat anda selamat bersama kami.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:0.5rem;">
+        <div style="width:36px;height:36px;border-radius:8px;background:var(--blue-600);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:800;font-size:13px;color:#fff;">PBMy</div>
+        <div style="font-family:var(--font-display);font-weight:700;font-size:14px;color:#fff;">Parti Generasi Rakyat<br /><span style="font-size:11px;color:rgba(255,255,255,0.4);font-weight:400;"> Negeri Pulau Pinang</span></div>
+      </div>
+      <p>Memperjuangkan masa depan belia Pulau Pinang dalam Parlimen Belia Malaysia. Bersama kita boleh.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Parti</h5>
+      <ul>
+        <li><a href="#tentang">Tentang GENERASI</a></li>
+        <li><a href="#agenda">Manifesto</a></li>
+        <li><a href="#kepimpinan">Kepimpinan</a></li>
+        <li><a href="#">Sejarah Parti</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Aktiviti</h5>
+      <ul>
+        <li><a href="#acara">Acara Akan Datang</a></li>
+        <li><a href="#">Galeri Foto</a></li>
+        <li><a href="#">Blog & Berita</a></li>
+        <li><a href="#">Sidang Parlimen</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Hubungi</h5>
+      <ul>
+        <li><a href="#">partigenerasirakyatpulaupinang@gmail.com</a></li>
+        <li><a href="#">+60 18-4010906</a></li>
+        <li><a href="#">Bayan Lepas, Pulau Pinang</a></li>
+        <li><a href="#sertai">Sertai Kami</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Parti Generasi Rakyat Pulau Pinang. Hak cipta terpelihara.</span>
+    <span class="footer-pbm-badge">Parlimen Belia Malaysia</span>
+  </div>
+</footer>
+
+<script>
+  // Nav scroll
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 30);
+  });
+
+  // Fade-up observer
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+
+  // Hamburger
+  function toggleMenu(btn) {
+    const ul = document.querySelector('.nav-links');
+    const open = ul.style.display === 'flex';
+    ul.style.display = open ? '' : 'flex';
+    ul.style.flexDirection = 'column';
+    ul.style.position = 'absolute';
+    ul.style.top = '70px'; ul.style.left = '0'; ul.style.right = '0';
+    ul.style.background = '#fff'; ul.style.padding = '1rem 5vw 1.5rem';
+    ul.style.boxShadow = '0 8px 32px rgba(0,0,0,0.08)';
+    if (open) ul.style.display = '';
+  }
+
+  // ── GOOGLE SHEETS INTEGRATION ──
+  // STEP: Replace this URL with your own Google Apps Script Web App URL
+  const SHEET_URL = 'https://script.google.com/macros/s/AKfycby5_UKBQcn7q1I7-7fIDs6KO5VOABZsJrZ-FciAsDp4mtsVHXiMkKJzqcC106Qm3hhxqA/exec';
+
+  async function submitToSheets() {
+    const name  = document.getElementById('reg-name').value.trim();
+    const email = document.getElementById('reg-email').value.trim();
+    const phone = document.getElementById('reg-phone').value.trim();
+    const area  = document.getElementById('reg-area').value;
+    const note  = document.getElementById('join-note');
+    const btn   = document.getElementById('reg-btn');
+
+    if (!name || !email || !phone || !area) {
+      note.style.color = '#c0392b';
+      note.textContent = '⚠ Sila isi semua maklumat sebelum mendaftar.';
+      return;
+    }
+    if (!email.includes('@')) {
+      note.style.color = '#c0392b';
+      note.textContent = '⚠ Sila masukkan alamat e-mel yang sah.';
+      return;
+    }
+
+    btn.disabled = true;
+    btn.textContent = 'Menghantar...';
+    note.style.color = 'var(--text-light)';
+    note.textContent = 'Sedang mendaftar, sila tunggu...';
+
+    const payload = new URLSearchParams({ name, email, phone, area,
+      timestamp: new Date().toLocaleString('ms-MY', { timeZone: 'Asia/Kuala_Lumpur' })
+    });
+
+    try {
+      await fetch(SHEET_URL, { method: 'POST', body: payload,
+        mode: 'no-cors' });
+      // no-cors means we can't read response — assume success if no error thrown
+      document.getElementById('reg-name').value = '';
+      document.getElementById('reg-email').value = '';
+      document.getElementById('reg-phone').value = '';
+      document.getElementById('reg-area').value = '';
+      btn.textContent = '✓ Berjaya Didaftarkan!';
+      btn.style.background = '#1a7a4a';
+      note.style.color = '#1a7a4a';
+      note.textContent = '✓ Terima kasih! Pendaftaran anda telah diterima. Kami akan menghubungi anda tidak lama lagi.';
+    } catch (err) {
+      btn.disabled = false;
+      btn.textContent = 'Daftar Sekarang →';
+      note.style.color = '#c0392b';
+      note.textContent = '⚠ Ralat penghantaran. Sila cuba semula atau hubungi kami secara terus.';
+    }
+  }
+</script>
+</body>
+</html>
